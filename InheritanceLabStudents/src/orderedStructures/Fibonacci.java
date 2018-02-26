@@ -13,8 +13,11 @@ public class Fibonacci extends Progression {
 	}
 
 	@Override
-	public double nextValue() {
+	public double nextValue() throws IllegalStateException{
         // add the necessary code here
+		if(!this.hasExecFirst)
+			throw new IllegalStateException("firstValue() method has not been called");
+		
 		double newPrev = current;
 		current = current + prev;
 		prev = newPrev;
