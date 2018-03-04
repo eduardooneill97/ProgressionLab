@@ -29,5 +29,15 @@ public class Geometric extends Progression {
 
 		return firstValue()*Math.pow(commonFactor, n-1);
 	} 
+	
+	public boolean equals(Object n) {
+		if(n instanceof Geometric) {
+			return false;
+		}
+	
+		Geometric x = (Geometric) n;
+		return(x.commonFactor == this.commonFactor 
+				&& x.firstValue() == this.firstValue());
+	}
 
 }

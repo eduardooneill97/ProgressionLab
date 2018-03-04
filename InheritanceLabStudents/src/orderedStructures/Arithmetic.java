@@ -1,6 +1,8 @@
 package orderedStructures;
 
-public class Arithmetic extends Progression {
+import interfaces.Combinable;
+
+public class Arithmetic extends Progression implements Combinable{
 	private double commonDifference; 
 	
 	public Arithmetic(double firstValue, double commonDifference) { 
@@ -27,6 +29,21 @@ public class Arithmetic extends Progression {
 			throw new IndexOutOfBoundsException("printAllTerms: Invalid argument value = " + n); 
 
 		return firstValue() + commonDifference*(n-1);
-	} 
+	}
+	
+	public boolean equals(Object n) {
+		if(n instanceof Arithmetic) {
+			return false;
+		}
+	
+		Arithmetic x = (Arithmetic) n;
+		return(x.commonDifference == this.commonDifference 
+				&& x.firstValue() == this.firstValue());
+	}
+
+	public Progression add(Progression p) {
+		return new Arithmetic(this.firstValue()+p.firstValue(), 
+				this.commonDifference+p.nextValue()-p.firstValue());
+	}
 
 }
