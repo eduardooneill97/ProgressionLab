@@ -41,9 +41,11 @@ public class Arithmetic extends Progression implements Combinable{
 				&& x.firstValue() == this.firstValue());
 	}
 
-	public Progression add(Progression p) {
+	public Progression add(Progression p) throws IllegalArgumentException{
+		if(!(p instanceof Arithmetic))
+			throw new IllegalArgumentException("Parameter must be instance of Arithmetic");
 		return new Arithmetic(this.firstValue()+p.firstValue(), 
-				this.commonDifference+p.nextValue()-p.firstValue());
+			this.commonDifference+((Arithmetic)p).commonDifference);
 	}
 
 }
